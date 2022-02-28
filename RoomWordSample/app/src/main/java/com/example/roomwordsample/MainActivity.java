@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,15 +34,15 @@ public class MainActivity extends AppCompatActivity {
             adapter.submitList(words);
         });
 
-        // uncomment for constant polling
-//        while (true) {
-//            Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
-//            startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
-//        }
-
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener( view -> {
             Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
+            startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+        });
+
+        FloatingActionButton fab2 = findViewById(R.id.floatingActionButton2);
+        fab2.setOnClickListener( view -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         });
     }
