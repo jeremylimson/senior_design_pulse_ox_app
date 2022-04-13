@@ -27,6 +27,9 @@ android {
         targetCompatibility = 1.8
     }
 }
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
@@ -36,6 +39,7 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
@@ -55,4 +59,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

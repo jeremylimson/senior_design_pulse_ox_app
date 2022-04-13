@@ -16,11 +16,18 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private int saturation = 0;
-    private ProgressBar progressBar;
-    private Button startProgress;
+    private int hr = 0;
+
+    private ProgressBar oxygenBar;
+    private Button startOx;
+
+    private ProgressBar heartBar;
+    private Button startHr;
 
     private WordViewModel mWordViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
@@ -35,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
         mWordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
+        mWordViewModel.delete();
         mWordViewModel.getAllWords().observe(this, words -> {
             // Update the cached copy of the words in the adapter.
             adapter.submitList(words);
@@ -59,15 +68,28 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         });
 
-        progressBar = findViewById(R.id.progress_bar);
-        startProgress = findViewById(R.id.startProgress);
+        oxygenBar = findViewById(R.id.progress_bar_oxygen);
+        startOx = findViewById(R.id.startOxygen);
+
+        heartBar = findViewById(R.id.progress_bar_heart_rate);
+        startHr = findViewById(R.id.startHeart);
 
         CountDownTimer countDownTimer = new CountDownTimer(11*1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                saturation += 10;
-                progressBar.setProgress(saturation);
-                progressBar.setMax(100);
+                // for testing, use random data to simulate normal oxygen saturation levels
+                int random_oxygen = new Random().nextInt(7) + 89;
+                saturation = random_oxygen;
+
+                int random_heart_rate = new Random().nextInt(7) + 63;
+                hr = random_heart_rate;
+
+                // TODO: cast word in database to int and display to GUI
+                oxygenBar.setProgress(saturation);
+                oxygenBar.setMax(100);
+
+                heartBar.setProgress(hr);
+                heartBar.setMax(200);
             }
 
             @Override
@@ -75,11 +97,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-        startProgress.setOnClickListener(new View.OnClickListener() {
+
+        startOx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 countDownTimer.start();
             }
+        });
+
+        startHr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { countDownTimer.start(); }
         });
     }
 

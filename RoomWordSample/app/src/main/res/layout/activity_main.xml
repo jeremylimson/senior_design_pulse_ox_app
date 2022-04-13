@@ -19,30 +19,74 @@
         tools:listitem="@layout/recyclerview_item" />
 
     <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/progress_bar_heart_rate"
+        android:layout_width="121dp"
+        android:layout_height="117dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintBottom_toTopOf="@+id/progress_bar_oxygen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.608"
+        tools:progress="70" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_oxygen"
+        android:layout_width="122dp"
+        android:layout_height="140dp"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553"
-        tools:progress="60" />
+        app:layout_constraintVertical_bias="0.642"
+        tools:progress="80" />
 
     <Button
-        android:id="@+id/startProgress"
+        android:id="@+id/startHeart"
         android:layout_width="193dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginTop="7dp"
+        android:text="Heart Rate"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/progress_bar_oxygen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_heart_rate" />
+
+    <TextView
+        android:id="@+id/text_view_oxygen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:translationZ="180dp"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar_oxygen"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar_oxygen"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar_oxygen"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar_oxygen"
+        app:layout_constraintVertical_bias="0.541"
+        tools:text="80%" />
+
+    <Button
+        android:id="@+id/startOxygen"
+        android:layout_width="193dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="32dp"
         android:text="Oxygen Saturation"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
-        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_oxygen"
+        app:layout_constraintVertical_bias="0.534" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
